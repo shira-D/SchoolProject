@@ -45,7 +45,8 @@ namespace BL
         //    using (DAL.SchoolEntities DB = new DAL.SchoolEntities())
         //    {
         //        List<UserDTO> useres = new List<UserDTO>();
-        //        var user=DB.Users.Where(s=>s.)
+        //        //var user=DB.Users.Where(s=>s.)
+        //        DB.Courses.;
         //    }
         //    }
         //}

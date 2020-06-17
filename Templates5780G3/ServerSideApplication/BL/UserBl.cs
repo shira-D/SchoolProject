@@ -33,11 +33,25 @@ namespace BL
            var userDal= UserDTO.UserConvertDAL(user);
             using (DAL.SchoolEntities DB = new DAL.SchoolEntities())
             {
-                //var y = DB.Users.Where(t => t.UserPassword == user.UserPassword).ToList();
+                 //var y = DB.Users.Where(t => t.UserPassword == user.UserPassword).ToList();
                 //if(y!=null)
                 //    DB.Users.Add(userDal);
                 DB.Users.Add(userDal);
             }
         }
+        public static List<User> GetAllUsers(int teacherid)
+        {
+            using (DAL.SchoolEntities DB = new DAL.SchoolEntities())
+            {
+                List<UserDTO> listUsers = new List<UserDTO>();
+                //עוברים על טבלת קורסים ושולפים את הקורסים של המורה הנוחכי
+                var e = DB.Courses.Where(t => t.IdTeacher == teacherid).ToList();
+                //רצינו לשלוף את הקבוצות של אותו הקורס והכל בשביל שנוכל להגיע לתלמיד שנמצא ב groupforuser
+                DB.Groups.Where(y => y.CodeCourse = e.CourseId);             
+               //איך אנחנו ניגשות לתלמידים של אותו מורה בדרך ישרה יותר
+               //תודה אין מילים נשמהההה!
+            }
+        }
+
     }
 }

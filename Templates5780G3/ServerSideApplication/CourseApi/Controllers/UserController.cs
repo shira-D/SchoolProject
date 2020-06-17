@@ -30,5 +30,11 @@ namespace CourseApi.Controllers
         {
             UserBl.RegisterUser(user);
         }
+        [HttpGet]
+        [Route("getAllUsers")]
+        public List<UserDTO> getAllUsers()
+        {
+            return UserBl.getAllUsers();
+        }
     }
 }

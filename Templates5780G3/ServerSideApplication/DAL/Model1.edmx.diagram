@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d530f59298ab4bd38ac9bdf6e86db15e" Name="Diagram1" ZoomLevel="66">
+        <EntityTypeShape EntityType="SchoolModel.Answer_for_Test" Width="1.5" PointX="9.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Course" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Lesson" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Question_For_Test" Width="1.5" PointX="7.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Teacher" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Test_For_Student" Width="1.5" PointX="12.75" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="SchoolModel.FK_Answer_for_Test_Question_For_Test" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK__Course__IdTeache__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK__Lesson__IdCourse__3F466844" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SchoolModel.Group" Width="1.5" PointX="5.625" PointY="5.75" />
+        <EntityTypeShape EntityType="SchoolModel.Massege_Group" Width="1.5" PointX="7.875" PointY="7.375" />
+        <EntityTypeShape EntityType="SchoolModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SchoolModel.Test" Width="1.5" PointX="7.875" PointY="10.5" />
+        <EntityTypeShape EntityType="SchoolModel.User_for_Group" Width="1.5" PointX="7.875" PointY="4.625" />
+        <AssociationConnector Association="SchoolModel.FK_Answer_for_Test_Test" />
+        <AssociationConnector Association="SchoolModel.FK__Groups__CodeCour__3E52440B" />
+        <AssociationConnector Association="SchoolModel.FK__Massege_G__IdGro__403A8C7D" />
+        <AssociationConnector Association="SchoolModel.FK__User_for___IdGro__4222D4EF" />
+        <AssociationConnector Association="SchoolModel.FK__Test__IdLesson__412EB0B6" />
+        <AssociationConnector Association="SchoolModel.FK_Test_For_Student_Test" />
+        <EntityTypeShape EntityType="SchoolModel.User" Width="1.5" PointX="3.375" PointY="1" />
+        <AssociationConnector Association="SchoolModel.FK_Test_For_Student_User" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

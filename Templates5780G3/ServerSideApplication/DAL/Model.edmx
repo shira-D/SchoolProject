@@ -1,0 +1,772 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="shiraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answer_for_Test">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Answer" Type="int" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseTime" Type="time" Precision="7" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CourseDescribe" Type="nvarchar" MaxLength="50" />
+          <Property Name="Proffestion" Type="nvarchar" MaxLength="50" />
+          <Property Name="MinUseres" Type="int" />
+          <Property Name="MaxUseres" Type="int" />
+          <Property Name="IdTeacher" Type="int" />
+          <Property Name="CoursePrice" Type="int" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOpen" Type="time" Precision="7" />
+          <Property Name="CodeCourse" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOpen" Type="time" Precision="7" />
+          <Property Name="CodeCourse" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lesson">
+          <Key>
+            <PropertyRef Name="LessonId" />
+          </Key>
+          <Property Name="LessonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LessonName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LessonTime" Type="time" Precision="7" />
+          <Property Name="LessonSub" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdCourse" Type="int" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Massege_Group">
+          <Key>
+            <PropertyRef Name="MassegeId" />
+          </Key>
+          <Property Name="MassegeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdGroup" Type="int" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="MassegeTime" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Question_For_Test">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="50" />
+          <Property Name="AnswerId" Type="int" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="TeacherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeacherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeacherEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeacherPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeacherAge" Type="int" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserNmae" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="TestId" />
+          </Key>
+          <Property Name="TestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdLesson" Type="int" />
+          <Property Name="TestName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TestSub" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Test_For_Student">
+          <Key>
+            <PropertyRef Name="Test_For_Student_Id" />
+          </Key>
+          <Property Name="Test_For_Student_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTest" Type="int" />
+          <Property Name="CodeUser" Type="int" />
+          <Property Name="Mark" Type="int" />
+          <Property Name="Time_Test" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserEmail" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UserBirthDate" Type="date" Nullable="false" />
+          <Property Name="Cover" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_for_Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdGroup" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="DateJoin" Type="date" />
+        </EntityType>
+        <EntityType Name="Useres">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserEmail" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UserBirthDate" Type="date" Nullable="false" />
+          <Property Name="Cover" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Course__IdTeache__49C3F6B7">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="IdTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Group__CodeCours__5BE2A6F2">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="CodeCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groups__CodeCour__60A75C0F">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="CodeCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Lesson__IdCourse__4F7CD00D">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="IdCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Massege_G__IdGro__619B8048">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Massege_Group" Type="Self.Massege_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Massege_Group">
+              <PropertyRef Name="IdGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Test__IdLesson__52593CB8">
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="0..1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lesson">
+              <PropertyRef Name="LessonId" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="IdLesson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_for___IdGro__6477ECF3">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="User_for_Group" Type="Self.User_for_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="User_for_Group">
+              <PropertyRef Name="IdGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_for___IdUse__68487DD7">
+          <End Role="Useres" Type="Self.Useres" Multiplicity="1" />
+          <End Role="User_for_Group" Type="Self.User_for_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Useres">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="User_for_Group">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="shiraModelStoreContainer">
+          <EntitySet Name="Answer_for_Test" EntityType="Self.Answer_for_Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lesson" EntityType="Self.Lesson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Massege_Group" EntityType="Self.Massege_Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question_For_Test" EntityType="Self.Question_For_Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test_For_Student" EntityType="Self.Test_For_Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_for_Group" EntityType="Self.User_for_Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Useres" EntityType="Self.Useres" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Course__IdTeache__49C3F6B7" Association="Self.FK__Course__IdTeache__49C3F6B7">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Group__CodeCours__5BE2A6F2" Association="Self.FK__Group__CodeCours__5BE2A6F2">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groups__CodeCour__60A75C0F" Association="Self.FK__Groups__CodeCour__60A75C0F">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Lesson__IdCourse__4F7CD00D" Association="Self.FK__Lesson__IdCourse__4F7CD00D">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Massege_G__IdGro__619B8048" Association="Self.FK__Massege_G__IdGro__619B8048">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Massege_Group" EntitySet="Massege_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Test__IdLesson__52593CB8" Association="Self.FK__Test__IdLesson__52593CB8">
+            <End Role="Lesson" EntitySet="Lesson" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_for___IdGro__6477ECF3" Association="Self.FK__User_for___IdGro__6477ECF3">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="User_for_Group" EntitySet="User_for_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_for___IdUse__68487DD7" Association="Self.FK__User_for___IdUse__68487DD7">
+            <End Role="Useres" EntitySet="Useres" />
+            <End Role="User_for_Group" EntitySet="User_for_Group" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="shiraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Answer_for_Test">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Answer" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseTime" Type="Time" Precision="7" />
+          <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourseDescribe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Proffestion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MinUseres" Type="Int32" />
+          <Property Name="MaxUseres" Type="Int32" />
+          <Property Name="IdTeacher" Type="Int32" />
+          <Property Name="CoursePrice" Type="Int32" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__Course__IdTeache__49C3F6B7" FromRole="Course" ToRole="Teacher" />
+          <NavigationProperty Name="Group" Relationship="Self.FK__Group__CodeCours__5BE2A6F2" FromRole="Course" ToRole="Group" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK__Groups__CodeCour__60A75C0F" FromRole="Course" ToRole="Groups" />
+          <NavigationProperty Name="Lesson" Relationship="Self.FK__Lesson__IdCourse__4F7CD00D" FromRole="Course" ToRole="Lesson" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOpen" Type="Time" Precision="7" />
+          <Property Name="CodeCourse" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__Group__CodeCours__5BE2A6F2" FromRole="Group" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOpen" Type="Time" Precision="7" />
+          <Property Name="CodeCourse" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__Groups__CodeCour__60A75C0F" FromRole="Groups" ToRole="Course" />
+          <NavigationProperty Name="Massege_Group" Relationship="Self.FK__Massege_G__IdGro__619B8048" FromRole="Groups" ToRole="Massege_Group" />
+          <NavigationProperty Name="User_for_Group" Relationship="Self.FK__User_for___IdGro__6477ECF3" FromRole="Groups" ToRole="User_for_Group" />
+        </EntityType>
+        <EntityType Name="Lesson">
+          <Key>
+            <PropertyRef Name="LessonId" />
+          </Key>
+          <Property Name="LessonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LessonName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Describe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LessonTime" Type="Time" Precision="7" />
+          <Property Name="LessonSub" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdCourse" Type="Int32" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__Lesson__IdCourse__4F7CD00D" FromRole="Lesson" ToRole="Course" />
+          <NavigationProperty Name="Test" Relationship="Self.FK__Test__IdLesson__52593CB8" FromRole="Lesson" ToRole="Test" />
+        </EntityType>
+        <EntityType Name="Massege_Group">
+          <Key>
+            <PropertyRef Name="MassegeId" />
+          </Key>
+          <Property Name="MassegeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdGroup" Type="Int32" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="MassegeTime" Type="Time" Precision="7" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK__Massege_G__IdGro__619B8048" FromRole="Massege_Group" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="Question_For_Test">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AnswerId" Type="Int32" />
+          <Property Name="Answer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Teachar">
+          <Key>
+            <PropertyRef Name="TeacharId" />
+          </Key>
+          <Property Name="TeacharId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeacharName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacharEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacharPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacharAge" Type="Int32" />
+          <Property Name="Describe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserNmae" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="TeacherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeacherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherAge" Type="Int32" />
+          <Property Name="Describe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserNmae" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__Course__IdTeache__49C3F6B7" FromRole="Teacher" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="TestId" />
+          </Key>
+          <Property Name="TestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdLesson" Type="Int32" />
+          <Property Name="TestName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TestSub" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lesson" Relationship="Self.FK__Test__IdLesson__52593CB8" FromRole="Test" ToRole="Lesson" />
+        </EntityType>
+        <EntityType Name="Test_For_Student">
+          <Key>
+            <PropertyRef Name="Test_For_Student_Id" />
+          </Key>
+          <Property Name="Test_For_Student_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTest" Type="Int32" />
+          <Property Name="CodeUser" Type="Int32" />
+          <Property Name="Mark" Type="Int32" />
+          <Property Name="Time_Test" Type="Time" Precision="7" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserEmail" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UserBirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Cover" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_for_Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdGroup" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="DateJoin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK__User_for___IdGro__6477ECF3" FromRole="User_for_Group" ToRole="Groups" />
+          <NavigationProperty Name="Useres" Relationship="Self.FK__User_for___IdUse__68487DD7" FromRole="User_for_Group" ToRole="Useres" />
+        </EntityType>
+        <EntityType Name="Useres">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserEmail" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UserBirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Cover" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User_for_Group" Relationship="Self.FK__User_for___IdUse__68487DD7" FromRole="Useres" ToRole="User_for_Group" />
+        </EntityType>
+        <Association Name="FK__Course__IdTeache__49C3F6B7">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="IdTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Group__CodeCours__5BE2A6F2">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="CodeCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Groups__CodeCour__60A75C0F">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="CodeCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Lesson__IdCourse__4F7CD00D">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="IdCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Massege_G__IdGro__619B8048">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Massege_Group" Type="Self.Massege_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Massege_Group">
+              <PropertyRef Name="IdGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_for___IdGro__6477ECF3">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="User_for_Group" Type="Self.User_for_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="User_for_Group">
+              <PropertyRef Name="IdGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Test__IdLesson__52593CB8">
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="0..1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lesson">
+              <PropertyRef Name="LessonId" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="IdLesson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_for___IdUse__68487DD7">
+          <End Role="Useres" Type="Self.Useres" Multiplicity="1" />
+          <End Role="User_for_Group" Type="Self.User_for_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Useres">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="User_for_Group">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="shiraEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answer_for_Test" EntityType="Self.Answer_for_Test" />
+          <EntitySet Name="Course" EntityType="Self.Course" />
+          <EntitySet Name="Group" EntityType="Self.Group" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" />
+          <EntitySet Name="Lesson" EntityType="Self.Lesson" />
+          <EntitySet Name="Massege_Group" EntityType="Self.Massege_Group" />
+          <EntitySet Name="Question_For_Test" EntityType="Self.Question_For_Test" />
+          <EntitySet Name="Teachar" EntityType="Self.Teachar" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+          <EntitySet Name="Test" EntityType="Self.Test" />
+          <EntitySet Name="Test_For_Student" EntityType="Self.Test_For_Student" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="User_for_Group" EntityType="Self.User_for_Group" />
+          <EntitySet Name="Useres" EntityType="Self.Useres" />
+          <AssociationSet Name="FK__Course__IdTeache__49C3F6B7" Association="Self.FK__Course__IdTeache__49C3F6B7">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Group__CodeCours__5BE2A6F2" Association="Self.FK__Group__CodeCours__5BE2A6F2">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Groups__CodeCour__60A75C0F" Association="Self.FK__Groups__CodeCour__60A75C0F">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Lesson__IdCourse__4F7CD00D" Association="Self.FK__Lesson__IdCourse__4F7CD00D">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Massege_G__IdGro__619B8048" Association="Self.FK__Massege_G__IdGro__619B8048">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Massege_Group" EntitySet="Massege_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_for___IdGro__6477ECF3" Association="Self.FK__User_for___IdGro__6477ECF3">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="User_for_Group" EntitySet="User_for_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Test__IdLesson__52593CB8" Association="Self.FK__Test__IdLesson__52593CB8">
+            <End Role="Lesson" EntitySet="Lesson" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_for___IdUse__68487DD7" Association="Self.FK__User_for___IdUse__68487DD7">
+            <End Role="Useres" EntitySet="Useres" />
+            <End Role="User_for_Group" EntitySet="User_for_Group" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="shiraModelStoreContainer" CdmEntityContainer="shiraEntities">
+          <EntitySetMapping Name="Answer_for_Test">
+            <EntityTypeMapping TypeName="shiraModel.Answer_for_Test">
+              <MappingFragment StoreEntitySet="Answer_for_Test">
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course">
+            <EntityTypeMapping TypeName="shiraModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="CourseTime" ColumnName="CourseTime" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseDescribe" ColumnName="CourseDescribe" />
+                <ScalarProperty Name="Proffestion" ColumnName="Proffestion" />
+                <ScalarProperty Name="MinUseres" ColumnName="MinUseres" />
+                <ScalarProperty Name="MaxUseres" ColumnName="MaxUseres" />
+                <ScalarProperty Name="IdTeacher" ColumnName="IdTeacher" />
+                <ScalarProperty Name="CoursePrice" ColumnName="CoursePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="shiraModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="DateOpen" ColumnName="DateOpen" />
+                <ScalarProperty Name="CodeCourse" ColumnName="CodeCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="shiraModel.Groups">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="DateOpen" ColumnName="DateOpen" />
+                <ScalarProperty Name="CodeCourse" ColumnName="CodeCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lesson">
+            <EntityTypeMapping TypeName="shiraModel.Lesson">
+              <MappingFragment StoreEntitySet="Lesson">
+                <ScalarProperty Name="LessonId" ColumnName="LessonId" />
+                <ScalarProperty Name="LessonName" ColumnName="LessonName" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="LessonTime" ColumnName="LessonTime" />
+                <ScalarProperty Name="LessonSub" ColumnName="LessonSub" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Massege_Group">
+            <EntityTypeMapping TypeName="shiraModel.Massege_Group">
+              <MappingFragment StoreEntitySet="Massege_Group">
+                <ScalarProperty Name="MassegeId" ColumnName="MassegeId" />
+                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="MassegeTime" ColumnName="MassegeTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question_For_Test">
+            <EntityTypeMapping TypeName="shiraModel.Question_For_Test">
+              <MappingFragment StoreEntitySet="Question_For_Test">
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher">
+            <EntityTypeMapping TypeName="shiraModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="TeacherEmail" ColumnName="TeacherEmail" />
+                <ScalarProperty Name="TeacherPhone" ColumnName="TeacherPhone" />
+                <ScalarProperty Name="TeacherAge" ColumnName="TeacherAge" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserNmae" ColumnName="UserNmae" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test">
+            <EntityTypeMapping TypeName="shiraModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="IdLesson" ColumnName="IdLesson" />
+                <ScalarProperty Name="TestName" ColumnName="TestName" />
+                <ScalarProperty Name="TestSub" ColumnName="TestSub" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test_For_Student">
+            <EntityTypeMapping TypeName="shiraModel.Test_For_Student">
+              <MappingFragment StoreEntitySet="Test_For_Student">
+                <ScalarProperty Name="Test_For_Student_Id" ColumnName="Test_For_Student_Id" />
+                <ScalarProperty Name="IdTest" ColumnName="IdTest" />
+                <ScalarProperty Name="CodeUser" ColumnName="CodeUser" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Time_Test" ColumnName="Time_Test" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="shiraModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserBirthDate" ColumnName="UserBirthDate" />
+                <ScalarProperty Name="Cover" ColumnName="Cover" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_for_Group">
+            <EntityTypeMapping TypeName="shiraModel.User_for_Group">
+              <MappingFragment StoreEntitySet="User_for_Group">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="DateJoin" ColumnName="DateJoin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Useres">
+            <EntityTypeMapping TypeName="shiraModel.Useres">
+              <MappingFragment StoreEntitySet="Useres">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserBirthDate" ColumnName="UserBirthDate" />
+                <ScalarProperty Name="Cover" ColumnName="Cover" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
